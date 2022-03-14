@@ -1,5 +1,6 @@
 import torch
 
+
 def cal_accuracy(model, X, y):
     pred = model(X)
     _, pred_ = torch.max(pred, 1)

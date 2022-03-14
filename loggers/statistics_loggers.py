@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+
 def plot_numerical_arrays(num_arrays=[], labels=[], xlabel='', ylabel='', title=''):
     plt.figure(figsize=(20, 10))
     if len(num_arrays) != len(labels):
