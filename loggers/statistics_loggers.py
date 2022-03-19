@@ -13,3 +13,19 @@ def plot_numerical_arrays(num_arrays=[], labels=[], xlabel='', ylabel='', title=
     plt.title(title)
     plt.legend()
     plt.show()
+
+
+def print_stats(data, src=None):
+    if src:
+        print("-" * 10)
+        print("Source:", src)
+        print("-" * 10)
+    print("Shape:", tuple(data.shape))
+    print("Dtype:", data.dtype)
+    print(f" - Max:     {data.max().item():6.3f}")
+    print(f" - Min:     {data.min().item():6.3f}")
+    print(f" - Mean:    {data.mean().item():6.3f}")
+    print(f" - Std Dev: {data.std().item():6.3f}")
+    print()
+    print(data)
+    print()

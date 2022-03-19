@@ -2,14 +2,17 @@ import torch
 from loggers.trainer_loggers import cal_accuracy
 
 '''
-    training array: [X_train, y_train, X_val, y_val]
+    training array: (X_train, y_train, X_val, y_val)
 '''
 
 
-def train(model, training_array, batch_size=100, num_epoch=40, lr=0.01):
-    loss = torch.nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(model.parameters(), lr=lr, momentum=0.9)
+def train(model, training_array, loss, optimizer, batch_size=100, num_epoch=40, device='cpu'):
+    model.to(device)
     X_train, y_train, X_val, y_val = training_array
+    X_train.to(device)
+    y_train.to(device)
+    X_val.to(device)
+    y_val.to(device)
     training_loss_array = []
     validation_loss_array = []
     training_accuracy_array = []

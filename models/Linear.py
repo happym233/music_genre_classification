@@ -5,5 +5,5 @@ class LogisticRegression(torch.nn.Module):
         self.linear = torch.nn.Linear(input_dim, output_dim)
 
     def forward(self, x):
-        outputs = torch.nn.Softmax(1)(self.linear(x))
+        outputs = self.linear(x)
         return outputs
