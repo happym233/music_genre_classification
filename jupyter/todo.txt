@@ -1,0 +1,8 @@
+1. download the dataset from https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification
+    unzip the file and paste it into folder original data
+2. if trained on csv, run data_splitting_csv.ipynb
+   if trained on waves, run wave_feature_extraction.ipynb
+2.(1) if trained on wave and 1-D network preprocessed need to be done on X_train, X_val and X_test
+3. define model
+4. train the model and hyperparameter search
+5. save the model ( !!remember to modify the filename to 'saved_modelname_csv.pt' or 'saved_modelname_wave.pt'!! )

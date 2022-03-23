@@ -1,6 +1,10 @@
 import os
 import re
 
+'''
+    load all music filenames of designated genre list
+'''
+
 
 def get_music_file_names(root='original_data/genres_original', genre_list=[]):
     music_name_lists = []

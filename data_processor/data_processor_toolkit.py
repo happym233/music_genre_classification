@@ -6,8 +6,11 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 
 '''
-    X, y: numpy array
-    tr_val_te_ratio_array: [train, validation, test]
+    a function that take data as input and return training, validation and testing data
+    X: data
+    y: label
+    tr_val_te_ratio_array: train, validation, test ratio
+        train: validation: test = array[0]: array[1]:array[2]
 '''
 
 
@@ -26,6 +29,8 @@ def split_data(X, y, tr_val_te_ratio_array=[8, 1, 1]):
 
 
 '''
+    a normalization function which fit the normalizer based on the first element of normalize_array
+        and transform all elements
     normalize_array: [fit_transform_element, ...]
 '''
 
@@ -63,12 +68,22 @@ def normalize_data(normalize_array):
     return normalize_array
 
 
+'''
+    take an array of numpy of input and transform them into pytorch.Tensor with type float32
+'''
+
+
 def numpy_to_tensor(array):
     for i in range(len(array)):
         array[i] = torch.tensor(array[i].astype(np.float32))
     if len(array) == 1:
         return array[0]
     return array
+
+
+'''
+    save an numpy array on the designated path with type .npy
+'''
 
 
 def save_numpy_arrays(arrays, paths, path_prefix=''):
@@ -82,6 +97,11 @@ def save_numpy_arrays(arrays, paths, path_prefix=''):
         np.save(paths[i], arrays[i])
 
 
+'''
+    load an numpy array on the designated path with type .npy
+'''
+
+
 def load_numpy_arrays(paths, path_prefix=''):
     if paths is None:
         return None
@@ -92,6 +112,14 @@ def load_numpy_arrays(paths, path_prefix=''):
     if len(res) == 1:
         return res[0]
     return res
+
+
+'''
+    combine an array of functions and output one function 
+        (for signal processing STFT -> cal_spectrogram -> cal_filterbank)
+    func_array: an array of function [f1, f2, ..., fn]
+    output: fn( ...f2(f1(x)))
+'''
 
 
 class FunctionArrayExecutor:

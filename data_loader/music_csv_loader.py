@@ -5,6 +5,12 @@ import torch
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 
 
+'''
+    load features with file(features_3_sec.csv or features_30_sec.csv)
+    and output the processed data X and ordinal encoding label y
+'''
+
+
 def load_wave_csv(file_path, labels=['blues', 'classical', 'country', 'disco']):
     wave_df = pd.read_csv(file_path)
     wave_df = wave_df.drop(labels="filename", axis=1)

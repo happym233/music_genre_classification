@@ -2,6 +2,15 @@ import torchaudio
 import torch
 
 
+'''
+    return the processed (data, label) with
+        music_filename_lists: a list of music file name that requires to be processed
+        mini_frag_sec: with each origin fragments are too long(30s), one fragments is split
+            into two minor parts with shorter length(mini_frag_sec)
+            e.g. mini_frag_sec = 10, the function will process (5s -> 15s) (15s -> 30s) of the original fragment
+        feature_extraction_func: a function which take the waveform as input and output the processed features
+'''
+
 def generate_wave_features(music_filename_lists,  mini_frag_sec, feature_extraction_fun,
                            root='original_data/genres_original/'):
     genre_num = len(music_filename_lists)

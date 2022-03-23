@@ -4,10 +4,9 @@ import matplotlib.pyplot as plt
 from matplotlib.pyplot import MultipleLocator
 
 """
-  modified from https://pytorch.org/tutorials/beginner/audio_preprocessing_tutorial.html
+    plot a wave based on waveform and sample_rate produced by torchvision after reading a .wav file
+    modified from https://pytorch.org/tutorials/beginner/audio_preprocessing_tutorial.html
 """
-
-
 
 
 def plot_waveform(waveform, sample_rate, title="Waveform", xlim=None, ylim=None):
@@ -32,8 +31,17 @@ def plot_waveform(waveform, sample_rate, title="Waveform", xlim=None, ylim=None)
     plt.show(block=False)
 
 
+'''
+    a function that help plotting more visible for spectrogram
+'''
+
+
 def power_to_db(spec):
     return 10 * torch.log10(spec)
+
+'''
+    plot a speechbrain extracted spectrogram
+'''
 
 
 def plot_spectrogram(spec, title=None, ylabel='freq_bin', aspect='auto', xmax=None):
@@ -49,6 +57,10 @@ def plot_spectrogram(spec, title=None, ylabel='freq_bin', aspect='auto', xmax=No
     fig.colorbar(im, ax=axs)
     plt.show(block=False)
 
+
+'''
+    plot a speechbrain extracted filter bank
+'''
 
 def plot_filterbank(fbank, title=None, ylabel='mel_filter_bin', aspect='auto', xmax=None):
     fig, axs = plt.subplots(1, 1, figsize=(20, 5))
