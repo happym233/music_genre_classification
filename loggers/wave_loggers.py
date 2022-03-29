@@ -39,6 +39,7 @@ def plot_waveform(waveform, sample_rate, title="Waveform", xlim=None, ylim=None)
 def power_to_db(spec):
     return 10 * torch.log10(spec)
 
+
 '''
     plot a speechbrain extracted spectrogram
 '''
@@ -61,6 +62,7 @@ def plot_spectrogram(spec, title=None, ylabel='freq_bin', aspect='auto', xmax=No
 '''
     plot a speechbrain extracted filter bank
 '''
+
 
 def plot_filterbank(fbank, title=None, ylabel='mel_filter_bin', aspect='auto', xmax=None):
     fig, axs = plt.subplots(1, 1, figsize=(20, 5))

@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 
-
 '''
     plot several numerical arrays within one figure (to show contract for each line)
     num_arrays: a set of numerical arrays [x1, x2, ..., xn]
     labels: labels for each line [l1, l2, ..., ln] (eg. l1 is the label of x1)
 '''
+
 
 def plot_numerical_arrays(num_arrays=[], labels=[], xlabel='', ylabel='', title=''):
     plt.figure(figsize=(20, 10))
@@ -20,10 +20,13 @@ def plot_numerical_arrays(num_arrays=[], labels=[], xlabel='', ylabel='', title=
     plt.legend()
     plt.show()
 
+
 '''
     print statistics of input data
     modified from https://pytorch.org/tutorials/beginner/audio_preprocessing_tutorial.html
 '''
+
+
 def print_stats(data, src=None):
     if src:
         print("-" * 10)

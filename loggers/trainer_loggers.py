@@ -8,6 +8,7 @@ import torch
     onthot: true if y is one-hot encoding, else y is ordinal encoding
 '''
 
+
 def cal_accuracy(model, X, y, onehot=False):
     pred = model(X)
     _, pred_ = torch.max(pred, 1)

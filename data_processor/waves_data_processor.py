@@ -1,7 +1,6 @@
 import torchaudio
 import torch
 
-
 '''
     return the processed (data, label) with
         music_filename_lists: a list of music file name that requires to be processed
@@ -11,7 +10,8 @@ import torch
         feature_extraction_func: a function which take the waveform as input and output the processed features
 '''
 
-def generate_wave_features(music_filename_lists,  mini_frag_sec, feature_extraction_fun,
+
+def generate_wave_features(music_filename_lists, mini_frag_sec, feature_extraction_fun,
                            root='original_data/genres_original/'):
     genre_num = len(music_filename_lists)
     features = None
