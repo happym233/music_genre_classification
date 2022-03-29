@@ -17,8 +17,10 @@ class MLP(nn.Module):
 
         if activation.lower() == 'leakyrelu':
             activation_func = nn.LeakyReLU(0.01)
-        else:
+        elif activation.lower() == 'relu' or activation == '':
             activation_func = nn.ReLU()
+        else:
+            raise Exception('Unknown activation function')
 
         if hidden_dims is None or len(hidden_dims) == 0:
             linear_array.append(nn.Linear(input_dim, output_dim))
@@ -29,6 +31,7 @@ class MLP(nn.Module):
                 cur = hidden_dim
                 linear_array.append(activation_func)
             linear_array.append(nn.Linear(cur, output_dim))
+
         self.seq = nn.Sequential(*linear_array)
 
     def forward(self, x):
