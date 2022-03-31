@@ -1,7 +1,6 @@
 import torch
 from loggers.trainer_loggers import cal_accuracy
 
-
 '''
     train the machine learning model based on SGD
     return a tuple of 
@@ -19,7 +18,8 @@ from loggers.trainer_loggers import cal_accuracy
 '''
 
 
-def train(model, training_array, loss, optimizer, batch_size=100, num_epoch=40, device='cpu'):
+def train(model, training_array, loss, optimizer, batch_size=100, num_epoch=40, device='cpu',
+          early_stop=False, break_accuracy=0.81):
     model.to(device)
     X_train, y_train, X_val, y_val = training_array
     X_train = X_train.to(device)
@@ -30,7 +30,10 @@ def train(model, training_array, loss, optimizer, batch_size=100, num_epoch=40, 
     validation_loss_array = []
     training_accuracy_array = []
     validation_accuracy_array = []
+    stop = False
     for epoch in range(num_epoch):
+        if stop:
+            break
         for i in range(0, len(X_train), batch_size):
             _input = X_train[i:i + batch_size]
             label = y_train[i:i + batch_size]
@@ -40,8 +43,13 @@ def train(model, training_array, loss, optimizer, batch_size=100, num_epoch=40, 
             l = loss(pred, label)
             training_loss_array.append(l.item())
             validation_loss_array.append(loss(model(X_val), y_val).item())
-            training_accuracy_array.append(cal_accuracy(model, X_train, y_train).to('cpu'))
-            validation_accuracy_array.append(cal_accuracy(model, X_val, y_val).to('cpu'))
+            training_accuracy = cal_accuracy(model, X_train, y_train).to('cpu')
+            validation_accuracy = cal_accuracy(model, X_val, y_val).to('cpu')
+            training_accuracy_array.append(training_accuracy)
+            validation_accuracy_array.append(validation_accuracy)
+            if early_stop and training_accuracy > break_accuracy and validation_accuracy > break_accuracy:
+                stop = True
+                break
             model.zero_grad()
             l.backward()
             optimizer.step()

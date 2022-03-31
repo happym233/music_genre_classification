@@ -19,6 +19,8 @@ COMP 6321 project: music genre classification on GTZAN
 | 2-layer 2dCNN training and testing on wave | [CNN2d_training_wave_attempt2.ipynb](jupyter/CNN2d_training_wave_attempt2.ipynb) |
 | LSTM training on wave                      | [LSTM_training_wave.ipynb](jupyter/LSTM_training_wave.ipynb) |
 | LSTM testing on wave                       | [LSTM_testing_wave.ipynb](jupyter/LSTM_testing_wave.ipynb)   |
+| CRDNN training on wave                     | [CRDNN_training_wave.ipynb](jupyter/CRDNN_training_wave.ipynb) |
+| CRDNN testing on wave                      | [CRDNN_testing_wave.ipynb](CRDNN_testing_wave.ipynb)         |
 
 
 
