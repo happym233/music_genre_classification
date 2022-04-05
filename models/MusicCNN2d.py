@@ -4,13 +4,13 @@ from .MLP import MLP
 from .CNN_block import CNN_2d_block
 
 
-class MusicCNN2d(nn.Module):
+class MusicCNN2d_1layer(nn.Module):
 
-    def __init__(self):
-        super(MusicCNN2d, self).__init__()
+    def __init__(self, output_dim, out_channels, dnn_input_dim):
+        super(MusicCNN2d_1layer, self).__init__()
         self.conv1 = CNN_2d_block(
             in_channels=1,
-            out_channels=8,
+            out_channels=out_channels,
             kernel_size=3,
             stride=2,
             padding=1,
@@ -22,7 +22,7 @@ class MusicCNN2d(nn.Module):
             batch_norm=True
         )
 
-        self.MLP = MLP(10000, 4, [1000, 50])
+        self.MLP = MLP(dnn_input_dim, output_dim=output_dim, hidden_dims=[5000, 200])
         # self.linear3 = nn.Linear(50, 4)
 
     def forward(self, x):

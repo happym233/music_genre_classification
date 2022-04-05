@@ -14,8 +14,8 @@ COMP 6321 project: music genre classification on GTZAN
 | MLP testing on csv                         | [MLP_testing_csv.ipynb](jupyter/MLP_testing_csv.ipynb)       |
 | MLP training on wave                       | [MLP_training_wave.ipynb](jupyter/MLP_training_wave.ipynb)   |
 | MLP testing on wave                        | [MLP_testing_wave.ipynb](jupyter/MLP_testing_wave.ipynb)     |
-| 1-layer 2dCNN training on wave             | [CNN2d_training_wave.ipynb](jupyter/CNN2d_training_wave.ipynb) |
-| 1-layer 2dCNN testing on wave              | [CNN2d_testing_wave.ipynb](jupyter/CNN2d_testing_wave.ipynb) |
+| 1 CNN block 2dCNN training on wave         | [CNN2d_1CNNblock_training_wave.ipynb](jupyter/CNN2d_1CNNblock_training_wave.ipynb) |
+| 1 CNN block 2dCNN testing on wave          | [CNN2d_1CNNBlock_testing_wave.ipynb](jupyter/CNN2d_1CNNBlock_testing_wave.ipynb) |
 | 2-layer 2dCNN training and testing on wave | [CNN2d_training_wave_attempt2.ipynb](jupyter/CNN2d_training_wave_attempt2.ipynb) |
 | LSTM training on wave                      | [LSTM_training_wave.ipynb](jupyter/LSTM_training_wave.ipynb) |
 | LSTM testing on wave                       | [LSTM_testing_wave.ipynb](jupyter/LSTM_testing_wave.ipynb)   |
