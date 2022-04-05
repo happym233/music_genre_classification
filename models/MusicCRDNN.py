@@ -5,7 +5,7 @@ from .MLP import MLP
 
 
 class MusicCRDNN(nn.Module):
-    def __init__(self, output_dim):
+    def __init__(self, output_dim, LSTM_hidden_size=240, bidirectional=False):
         super(MusicCRDNN, self).__init__()
 
         self.conv1 = CNN_2d_block(
@@ -38,9 +38,14 @@ class MusicCRDNN(nn.Module):
 
         )
 
-        self.LSTM = nn.LSTM(input_size=80, hidden_size=240, num_layers=8, dropout=0.15, batch_first=True)
+        self.LSTM = nn.LSTM(input_size=80, hidden_size=LSTM_hidden_size,
+                            num_layers=8, dropout=0.15, batch_first=True, bidirectional=bidirectional)
 
-        self.MLP = MLP(input_dim=240, output_dim=output_dim, hidden_dims=[60])
+        self.MLP = None
+        if not bidirectional:
+            self.MLP = MLP(input_dim=LSTM_hidden_size, output_dim=output_dim, hidden_dims=[60])
+        else:
+            self.MLP = MLP(input_dim=LSTM_hidden_size * 2, output_dim=output_dim, hidden_dims=[60])
 
     def forward(self, x):
         out = x
