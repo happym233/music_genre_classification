@@ -35,7 +35,7 @@ class MusicCNN2d_1CNNBlock(nn.Module):
 
 class MusicCNN2d_2CNNBlock(nn.Module):
 
-    def __init__(self, out_channel1=8, out_channel2=32, DNN_input_dim=10000, DNN_output_dim=10):
+    def __init__(self, out_channel1=8, out_channel2=32, DNN_input_dim=10000, DNN_hidden_dims=[],  DNN_output_dim=10):
         super(MusicCNN2d_2CNNBlock, self).__init__()
         self.conv1 = CNN_2d_block(
             in_channels=1,
