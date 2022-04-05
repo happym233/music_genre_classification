@@ -11,7 +11,7 @@ class MLP(nn.Module):
             else use ReLU as activation function
     """
 
-    def __init__(self, input_dim, output_dim, hidden_dims=[], activation='relu', scaling=False, scaling_factor=1e-5):
+    def __init__(self, input_dim, output_dim, hidden_dims=[], activation='relu'):
         super(MLP, self).__init__()
         linear_array = []
 
@@ -33,11 +33,6 @@ class MLP(nn.Module):
             linear_array.append(nn.Linear(cur, output_dim))
 
         self.seq = nn.Sequential(*linear_array)
-        self.scaling = scaling
-        self.scaling_factor = scaling_factor
 
     def forward(self, x):
-        if self.scaling:
-            return self.scaling_factor * self.seq(x)
-        else:
-            return self.seq(x)
+        return self.seq(x)

@@ -1,0 +1,11 @@
+numpy==1.21.5
+scikit_learn==1.0.2
+torch==1.11.0+cu113
+torch-summary==1.4.5
+torchaudio==0.11.0+cu113
+speechbrain
+ipykernel==6.9.2
+ipython==8.1.1
+jedi==0.18.1
+jupyter-client==7.1.2
+jupyter-core==4.9.2
