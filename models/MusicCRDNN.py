@@ -40,7 +40,7 @@ class MusicCRDNN(nn.Module):
 
         self.LSTM = nn.LSTM(input_size=80, hidden_size=240, num_layers=8, dropout=0.15, batch_first=True)
 
-        self.MLP = MLP(input_dim=240, output_dim=output_dim, hidden_dim=[60])
+        self.MLP = MLP(input_dim=240, output_dim=output_dim, hidden_dims=[60])
 
     def forward(self, x):
         out = x
