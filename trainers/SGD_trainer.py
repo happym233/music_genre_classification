@@ -4,17 +4,26 @@ from loggers.trainer_loggers import cal_accuracy
 '''
     train the machine learning model based on SGD
     return a tuple of 
-        training loss, training accuracy, validation loss, validation accuracy 
+        (training loss, training accuracy, validation loss, validation accuracy) 
     for each batch within the training process
      
-    model: the machine learning model to be trained
-    training array: (X_train, y_train, X_val, y_val) where
-        X_train: training data
-        y_train: training labels with ordinal encoding
-        X_val: validation data
-        y_val: validation labels with ordinal encoding
-    device: 'gpu' if model in trained on GPU
-            the trained model and data will be moved back to cpu after training
+    model: torch.nn.Module 
+        the machine learning model to be trained
+    training array: (X_train, y_train, X_val, y_val) 
+        where:
+            X_train: torch.Tensor 
+                training data
+            y_train: torch.Tensor
+                training labels with ordinal encoding
+            X_val: torch.Tensor 
+                validation data
+            y_val: torch.Tensor
+                validation labels with ordinal encoding
+    device: str
+        'gpu' if model in trained on GPU
+        the trained model and data will be moved back to cpu after training
+    saved_model_name: str
+         the name of saved model   
 '''
 
 

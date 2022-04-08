@@ -64,7 +64,7 @@ class MusicCNN2d_2CNNBlock(nn.Module):
             activation='ReLU',
             batch_norm=True
         )
-        self.MLP = MLP(DNN_input_dim, DNN_output_dim, [1000, 50])
+        self.MLP = MLP(DNN_input_dim, DNN_output_dim, DNN_hidden_dims)
         # self.linear3 = nn.Linear(50, 4)
 
     def forward(self, x):
