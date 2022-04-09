@@ -84,7 +84,7 @@ class MusicCNN2d(nn.Module):
             hidden dimensions of DNN clock
     """
 
-    def __init__(self, out_channels=[], DNN_input_dim=10000, DNN_hidden_dims=[], DNN_output_dim=10):
+    def __init__(self, out_channels=[], DNN_input_dim=10000, DNN_hidden_dims=[], DNN_output_dim=10, res_block=False):
         super(MusicCNN2d, self).__init__()
         cur = 1
         conv_array = []
@@ -102,6 +102,8 @@ class MusicCNN2d(nn.Module):
                 activation='ReLU',
                 batch_norm=True
             ))
+            if res_block:
+                conv_array.append(ResBlock(out_channel))
             cur = out_channel
         self.conv = nn.Sequential(*conv_array)
         self.MLP = MLP(DNN_input_dim, DNN_output_dim, DNN_hidden_dims)
@@ -114,61 +116,4 @@ class MusicCNN2d(nn.Module):
         out = self.MLP(out)
         return out
 
-
-class MusicCNN2d_ResBlocks(nn.Module):
-
-    """
-        2d CNN for music genre classification
-        several fixed CNN blocks(different output channels) followed by a DNN block
-
-        CNN_out_channels: list
-            an array of output channels
-
-        DNN: DNN block following the CNN network
-
-        DNN_input_dim: int
-            input dimension of DNN block
-        DNN_output_dim: int
-            output dimension of DNN block
-        DNN_hidden_dims: list
-            hidden dimensions of DNN clock
-    """
-
-    def __init__(self, out_channels=[], DNN_input_dim=10000, DNN_hidden_dims=[], DNN_output_dim=10):
-        super(MusicCNN2d_ResBlocks, self).__init__()
-
-        cur = 1
-        conv_array = []
-
-        for out_channel in out_channels:
-            conv_array.append(CNN_2d_block(
-                in_channels=cur,
-                out_channels=out_channel,
-                kernel_size=3,
-                stride=1,
-                padding=1,
-                pooling_kernel_size=2,
-                pooling_stride=2,
-                pooling_padding=0,
-                pooling='avg',
-                activation='ReLU',
-                batch_norm=True
-            ))
-            conv_array.append(ResBlock(out_channel))
-            cur = out_channel
-
-        res_array = []
-
-        self.conv = nn.Sequential(*conv_array)
-        self.res = nn.Sequential(*res_array)
-        self.MLP = MLP(DNN_input_dim, DNN_output_dim, DNN_hidden_dims)
-        # self.linear3 = nn.Linear(50, 4)
-
-    def forward(self, x):
-        out = self.conv(x)
-        # print(out.shape)
-        out = self.res(out)
-        out = torch.flatten(out, 1)
-        out = self.MLP(out)
-        return out
 
