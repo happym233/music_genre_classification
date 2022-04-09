@@ -4,6 +4,35 @@ import torch.nn as nn
 
 class CNN_1d_block(nn.Module):
 
+    """
+        1-dimensional CNN block
+        CONV1d + activation + batch_norm + pooling
+        in_channels: int
+            number of input channels
+        out_channels: int
+            number of output channels
+        kernel_size: int
+            size of convolutional kernel
+        stride: int
+            stride of convolutional kernel
+        padding: int
+            padding of convolution
+        pooling: str
+            'avg' if use average pooling
+            'max' if use max pooling
+        pooling_kernel_size: int
+            size of pooling kernel
+        pooling_stride: int
+            stride of pooling kernel
+        pooling_padding: int
+            padding of pooling kernel
+        activation: str
+            'ReLU' if use ReLU as activation function
+            'LeakyReLU' if use LeakyReLU as activation function
+        batch_norm: boolean
+            True if use batch norm
+            False if not use batch norm
+    """
     def __init__(
             self, in_channels, out_channels, kernel_size=3, stride=1, padding=0,
             pooling='avg', pooling_kernel_size=2, pooling_stride=1, pooling_padding=0,
@@ -22,15 +51,15 @@ class CNN_1d_block(nn.Module):
                          )
         layer_array.append(conv)
 
-        if batch_norm:
-            layer_array.append(nn.BatchNorm1d(out_channels))
-
         if activation.lower() == 'relu' or activation == '':
             layer_array.append(nn.ReLU())
         elif activation.lower() == 'leakyrelu':
             layer_array.append(nn.LeakyReLU)
         else:
             raise Exception('Unknown activation type')
+
+        if batch_norm:
+            layer_array.append(nn.BatchNorm1d(out_channels))
 
         if pooling.lower() == 'avg':
             layer_array.append(
@@ -51,6 +80,35 @@ class CNN_1d_block(nn.Module):
 
 class CNN_2d_block(nn.Module):
 
+    """
+        2-dimensional CNN block
+        CONV2d + activation + batch_norm + pooling
+        in_channels: int
+            number of input channels
+        out_channels: int
+            number of output channels
+        kernel_size: int or tuple
+            size of convolutional kernel
+        stride: int or tuple
+            stride of convolutional kernel
+        padding: int or tuple
+            padding of convolution
+        pooling: str
+            'avg' if use average pooling
+            'max' if use max pooling
+        pooling_kernel_size: int or tuple
+            size of pooling kernel
+        pooling_stride: int or tuple
+            stride of pooling kernel
+        pooling_padding: int or tuple
+            padding of pooling kernel
+        activation: str
+            'ReLU' if use ReLU as activation function
+            'LeakyReLU' if use LeakyReLU as activation function
+        batch_norm: boolean
+            True if use batch norm
+            False if not use batch norm
+    """
     def __init__(
             self, in_channels, out_channels, kernel_size=3, stride=1, padding=0,
             pooling='avg', pooling_kernel_size=2, pooling_stride=1, pooling_padding=0,
@@ -68,15 +126,15 @@ class CNN_2d_block(nn.Module):
                          )
         layer_array.append(conv)
 
-        if batch_norm:
-            layer_array.append(nn.BatchNorm2d(out_channels))
-
         if activation.lower() == 'relu' or activation == '':
             layer_array.append(nn.ReLU())
         elif activation.lower() == 'leakyrelu':
             layer_array.append(nn.LeakyReLU(0.01))
         else:
             raise Exception('Unknown activation type')
+
+        if batch_norm:
+            layer_array.append(nn.BatchNorm2d(out_channels))
 
         if pooling.lower() == 'avg':
             layer_array.append(

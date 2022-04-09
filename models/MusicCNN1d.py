@@ -5,6 +5,25 @@ from .MLP import MLP
 
 
 class MusicCNN1d(nn.Module):
+
+    """
+        1d CNN for music genre classification
+        several fixed CNN blocks(different output channels) followed by a DNN block
+
+        CNN_out_channels: list
+            an array of output channels
+        pooling: str
+            'avg' if use average pooling, 'max' if use max pooling
+
+        DNN: DNN block following the CNN network
+
+        DNN_input_dim: int
+            input dimension of DNN block
+        DNN_output_dim: int
+            output dimension of DNN block
+        DNN_hidden_dims: list
+            hidden dimensions of DNN clock
+    """
     def __init__(self, CNN_out_channels=None, pooling='avg', DNN_input_dim=26720, DNN_output_dim=10,
                  DNN_hidden_dims=[]):
 

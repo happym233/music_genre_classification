@@ -3,15 +3,22 @@ import torch.nn as nn
 
 
 class MLP(nn.Module):
+
     """
-        input_dim: input dimension
-        output_dim: output dimension
-        hidden_dims: an array of hidden layer dimensions
+        MLP
+        input_dim: str
+            input dimension
+        output_dim: str
+            output dimension
+        hidden_dims: list
+            an array of hidden layer dimensions
         activation: 'leakyReLU' if use leakyReLU as activation function
             else use ReLU as activation function
+        batch_norm: boolean
+            true if apply batch norm
     """
 
-    def __init__(self, input_dim, output_dim, hidden_dims=[], activation='relu'):
+    def __init__(self, input_dim, output_dim, hidden_dims=[], activation='relu', batch_norm=False):
         super(MLP, self).__init__()
         linear_array = []
 
@@ -30,6 +37,8 @@ class MLP(nn.Module):
                 linear_array.append(nn.Linear(cur, hidden_dim))
                 cur = hidden_dim
                 linear_array.append(activation_func)
+                if batch_norm:
+                    linear_array.append(nn.BatchNorm1d(cur))
             linear_array.append(nn.Linear(cur, output_dim))
 
         self.seq = nn.Sequential(*linear_array)

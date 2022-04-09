@@ -8,6 +8,11 @@ from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 '''
     load features with file(features_3_sec.csv or features_30_sec.csv)
     and output the processed data X and ordinal encoding label y
+    
+    file_path: str
+        The file path of feature_x_seconds.csv
+    labels: list 
+        labels of music fragments that need to be selected(for 4-genres and 10-genres)
 '''
 
 

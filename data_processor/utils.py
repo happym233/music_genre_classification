@@ -7,8 +7,10 @@ import numpy as np
 
 '''
     a function that take data as input and return training, validation and testing data
-    X: data
-    y: label
+    X: numpy.array
+        data
+    y: numpy.array
+        label
     tr_val_te_ratio_array: train, validation, test ratio
         train: validation: test = array[0]: array[1]:array[2]
 '''
@@ -31,7 +33,8 @@ def split_data(X, y, tr_val_te_ratio_array=[8, 1, 1]):
 '''
     a normalization function which fit the normalizer based on the first element of normalize_array
         and transform all elements
-    normalize_array: [fit_transform_element, ...]
+    normalize_array: list
+        [fit_transform_element, ...]
 '''
 
 

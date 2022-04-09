@@ -5,7 +5,9 @@ from .CNN_block import CNN_2d_block
 
 
 class MusicCNN2d_1CNNBlock(nn.Module):
-
+    '''
+        one 2d CNN block followed by one DNN block
+    '''
     def __init__(self, output_dim, out_channels, dnn_input_dim):
         super(MusicCNN2d_1CNNBlock, self).__init__()
         self.conv1 = CNN_2d_block(
@@ -17,7 +19,7 @@ class MusicCNN2d_1CNNBlock(nn.Module):
             pooling_kernel_size=2,
             pooling_stride=2,
             pooling_padding=0,
-            pooling='max',
+            pooling='avg',
             activation='ReLU',
             batch_norm=True
         )
@@ -46,7 +48,7 @@ class MusicCNN2d_2CNNBlock(nn.Module):
             pooling_kernel_size=2,
             pooling_stride=2,
             pooling_padding=0,
-            pooling='max',
+            pooling='avg',
             activation='ReLU',
             batch_norm=True
         )
@@ -60,7 +62,7 @@ class MusicCNN2d_2CNNBlock(nn.Module):
             pooling_kernel_size=2,
             pooling_stride=2,
             pooling_padding=0,
-            pooling='max',
+            pooling='avg',
             activation='ReLU',
             batch_norm=True
         )

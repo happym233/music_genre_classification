@@ -3,6 +3,11 @@ import re
 
 '''
     load all music filenames of designated genre list
+    
+    root: str
+        the root path of music files
+    genre list: list
+        the list of genres that wants to be selected
 '''
 
 
