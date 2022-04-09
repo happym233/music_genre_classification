@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 from .CNN_block import CNN_2d_block, ResBlock
-from .MusicCNN2d import MusicCNN2d_ResBlocks
 from .MLP import MLP
 
 """
