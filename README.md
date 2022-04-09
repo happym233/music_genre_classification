@@ -24,8 +24,11 @@ COMP 6321 project: music genre classification on GTZAN
 | 2 CNN block 2dCNN training on wave   | [CNN2d_2CNNblock_training_wave.ipynb](jupyter/CNN2d_2CNNblock_training_wave.ipynb) |
 | 2 CNN block 2dCNN testing on wave    | [CNN2d_2CNNBlock_testing_wave.ipynb](jupyter/CNN2d_2CNNBlock_testing_wave.ipynb) |
 | **2d CNN (n CNN block) on wave**     |                                                              |
-| 2 CNN block 2dCNN training on wave   | [CNN2d_training_wave.ipynb](jupyter/CNN2d_training_wave.ipynb) |
-| 2 CNN block 2dCNN testing on wave    | [CNN2d_testing_wave.ipynb](jupyter/CNN2d_testing_wave.ipynb) |
+| 2dCNN training on wave               | [CNN2d_training_wave.ipynb](jupyter/CNN2d_training_wave.ipynb) |
+| 2dCNN testing on wave                | [CNN2d_testing_wave.ipynb](jupyter/CNN2d_testing_wave.ipynb) |
+| **2d CNN(Res block) on wave**        |                                                              |
+| 2dCNN(Res block) training on wave    | [CNN2d_res_training_wave.ipynb](jupyter/CNN2d_res_training_wave.ipynb) |
+| 2dCNN(Res block) testing on wave     | [CNN2d_res_testing_wave.ipynb](jupyter/CNN2d_res_testing_wave.ipynb) |
 | **LSTM on wave**                     |                                                              |
 | LSTM training on wave                | [LSTM_training_wave.ipynb](jupyter/LSTM_training_wave.ipynb) |
 | LSTM testing on wave                 | [LSTM_testing_wave.ipynb](jupyter/LSTM_testing_wave.ipynb)   |

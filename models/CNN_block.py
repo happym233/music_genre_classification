@@ -3,7 +3,6 @@ import torch.nn as nn
 
 
 class CNN_1d_block(nn.Module):
-
     """
         1-dimensional CNN block
         CONV1d + activation + batch_norm + pooling
@@ -33,6 +32,7 @@ class CNN_1d_block(nn.Module):
             True if use batch norm
             False if not use batch norm
     """
+
     def __init__(
             self, in_channels, out_channels, kernel_size=3, stride=1, padding=0,
             pooling='avg', pooling_kernel_size=2, pooling_stride=1, pooling_padding=0,
@@ -79,7 +79,6 @@ class CNN_1d_block(nn.Module):
 
 
 class CNN_2d_block(nn.Module):
-
     """
         2-dimensional CNN block
         CONV2d + activation + batch_norm + pooling
@@ -109,6 +108,7 @@ class CNN_2d_block(nn.Module):
             True if use batch norm
             False if not use batch norm
     """
+
     def __init__(
             self, in_channels, out_channels, kernel_size=3, stride=1, padding=0,
             pooling='avg', pooling_kernel_size=2, pooling_stride=1, pooling_padding=0,
@@ -151,3 +151,35 @@ class CNN_2d_block(nn.Module):
 
     def forward(self, x):
         return self.seq(x)
+
+
+class ResBlock(nn.Module):
+
+    def __init__(self, channels):
+        super(ResBlock, self).__init__()
+
+        self.Conv2d1 = nn.Sequential(
+            nn.Conv2d(in_channels=channels,
+                      out_channels=channels,
+                      kernel_size=3,
+                      stride=1,
+                      padding=1
+                      ),
+            nn.BatchNorm2d(channels),
+            nn.ReLU()
+        )
+
+        self.Conv2d2 = nn.Sequential(
+            nn.Conv2d(in_channels=channels,
+                      out_channels=channels,
+                      kernel_size=3,
+                      stride=1,
+                      padding=1
+                      ),
+            nn.BatchNorm2d(channels),
+        )
+
+    def forward(self, x):
+        out = self.Conv2d1(x)
+        out = self.Conv2d2(out)
+        return nn.ReLU()(out + x)
