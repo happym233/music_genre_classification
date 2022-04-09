@@ -35,7 +35,7 @@ COMP 6321 project: music genre classification on GTZAN
 | CRDNN training on wave               | [CRDNN_training_wave.ipynb](jupyter/CRDNN_training_wave.ipynb) |
 | CRDNN testing on wave                | [CRDNN_testing_wave.ipynb](jupyter/CRDNN_testing_wave.ipynb) |
 | CRDNN bidirectional training on wave | [CRDNN_bidirectional_training_wave.ipynb](jupyter/CRDNN_bidirectional_training_wave.ipynb) |
-| CRDNN bidirectional training on wave | [CRDNN_bidirectional_testing_wave.ipynb](jupyter/CRDNN_bidirectional_testing_wave.ipynb) |
+| CRDNN bidirectional testing on wave  | [CRDNN_bidirectional_testing_wave.ipynb](jupyter/CRDNN_bidirectional_testing_wave.ipynb) |
 
  
 
