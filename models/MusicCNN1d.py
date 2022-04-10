@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from .CNN_block import CNN_1d_block
+from .CNN_block import CNN_1d_block, Res1d
 from .MLP import MLP
 
 
@@ -24,14 +24,14 @@ class MusicCNN1d(nn.Module):
             hidden dimensions of DNN clock
     """
 
-    def __init__(self, CNN_out_channels=None, pooling='avg', DNN_input_dim=26720, DNN_output_dim=10,
-                 DNN_hidden_dims=[]):
+    def __init__(self, CNN_input_channels=1, CNN_out_channels=None, pooling='avg', DNN_input_dim=26720, DNN_output_dim=10,
+                 DNN_hidden_dims=[], res_block=False):
 
         super(MusicCNN1d, self).__init__()
 
         if CNN_out_channels is None:
             raise Exception('Empty CNN out channels')
-        cur = 1
+        cur = CNN_input_channels
         CNN_block_array = []
         for CNN_out_channel in CNN_out_channels:
             CNN_block_array.append(CNN_1d_block(
@@ -47,6 +47,9 @@ class MusicCNN1d(nn.Module):
                 activation='ReLU',
                 batch_norm=True
             ))
+
+            if res_block:
+                CNN_block_array.append(Res1d(CNN_out_channel))
             cur = CNN_out_channel
             # print(cur)
 

@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from .CNN_block import CNN_2d_block, ResBlock
+from .CNN_block import CNN_2d_block, Res2d
 from .MLP import MLP
 
 
@@ -44,7 +44,7 @@ class MusicCRDNN(nn.Module):
                 batch_norm=True
             ))
             if res_block:
-                CNN_block_array.append(ResBlock(channels=CNN_out_channel))
+                CNN_block_array.append(Res2d(channels=CNN_out_channel))
             cur = CNN_out_channel
 
         self.conv = nn.Sequential(*CNN_block_array)

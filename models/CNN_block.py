@@ -153,7 +153,45 @@ class CNN_2d_block(nn.Module):
         return self.seq(x)
 
 
-class ResBlock(nn.Module):
+class Res1d(nn.Module):
+
+    """
+        residual convolution block
+        conv 3 => batch norm => relu => conv 3 => batch norm => out
+                                                                 => x => out + x => relu
+        channels: number of channels(unchanged through residual convolutional block)
+    """
+
+    def __init__(self, channels):
+        super(Res1d, self).__init__()
+
+        self.Conv1d1 = nn.Sequential(
+            nn.Conv1d(in_channels=channels,
+                      out_channels=channels,
+                      kernel_size=3,
+                      stride=1,
+                      padding=1
+                      ),
+            nn.BatchNorm1d(channels),
+            nn.ReLU()
+        )
+
+        self.Conv1d2 = nn.Sequential(
+            nn.Conv1d(in_channels=channels,
+                      out_channels=channels,
+                      kernel_size=3,
+                      stride=1,
+                      padding=1
+                      ),
+            nn.BatchNorm1d(channels),
+        )
+
+    def forward(self, x):
+        out = self.Conv1d1(x)
+        out = self.Conv1d2(out)
+        return nn.ReLU()(out + x)
+
+class Res2d(nn.Module):
     '''
         residual convolution block
         conv 3x3 => batch norm => relu => conv 3x3 => batch norm => out
@@ -162,7 +200,7 @@ class ResBlock(nn.Module):
     '''
 
     def __init__(self, channels):
-        super(ResBlock, self).__init__()
+        super(Res2d, self).__init__()
 
         self.Conv2d1 = nn.Sequential(
             nn.Conv2d(in_channels=channels,
