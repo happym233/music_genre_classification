@@ -37,7 +37,7 @@ class MusicCRDNN(nn.Module):
                 batch_norm=True
             ))
             if res_block:
-                self.CNN_block_array.append(ResBlock(channels=CNN_out_channel))
+                CNN_block_array.append(ResBlock(channels=CNN_out_channel))
             cur = CNN_out_channel
 
         self.conv = nn.Sequential(*CNN_block_array)
