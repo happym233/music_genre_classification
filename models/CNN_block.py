@@ -154,6 +154,12 @@ class CNN_2d_block(nn.Module):
 
 
 class ResBlock(nn.Module):
+    '''
+        residual convolution block
+        conv 3x3 => batch norm => relu => conv 3x3 => batch norm => out
+                                                                 => x => out + x => relu
+        channels: number of channels(unchanged through residual convolutional block)
+    '''
 
     def __init__(self, channels):
         super(ResBlock, self).__init__()

@@ -3,18 +3,25 @@ import torch.nn as nn
 from .CNN_block import CNN_2d_block, ResBlock
 from .MLP import MLP
 
-"""
-    two 2d convolutional block => one LSTM block => one MLP block
-    output_dim: int
-        the output dimension of the model
-    LSTM_hidden_size: int
-        the hidden size of LSTM
-    bidirectional: boolean
-        True of apply bidirectional LSTM
-"""
-
 
 class MusicCRDNN(nn.Module):
+    '''
+        CNN + LSTM + MLP
+        CNN_out_channels: list
+            the number of output channels of CNN blocks
+        output_dim: int
+            number of classes of classification
+        LSTM_input_size: int
+            input size of LSTM
+        LSTM_hidden_size: int
+            hidden size of LSTM
+        MLP_hidden_dims: list
+            the number of dimensions of hidden layers of MLP
+        res_block: boolean
+            True if use residual block instead of common CNN block
+        bidirectional: boolean
+            True if use bidirectional LSTM
+    '''
 
     def __init__(self, CNN_out_channels=[], output_dim=10, LSTM_input_size=80, LSTM_hidden_size=240,
                  MLP_hidden_dims=[60], res_block=False, bidirectional=False):

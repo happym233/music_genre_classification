@@ -3,24 +3,25 @@ import torch.nn as nn
 from .MLP import MLP
 
 
-"""
-    LSTM with linear transformation
-    
-    input_size: int
-        size of input features
-    hidden_size: int
-        size of features in hidden layers
-    output_size: int
-        size of output of the model
-    num_layers: int
-        number of recurrent layers
-    dropout: float
-        dropout rate
-    bidirectional: boolean
-        True if use bidirectional LSTM
-"""
-
 class MusicLSTM(nn.Module):
+
+    """
+        LSTM with linear transformation
+
+        input_size: int
+            size of input features
+        hidden_size: int
+            size of features in hidden layers
+        output_size: int
+            size of output of the model
+        num_layers: int
+            number of recurrent layers
+        dropout: float
+            dropout rate
+        bidirectional: boolean
+            True if use bidirectional LSTM
+    """
+
     def __init__(self, input_size=40, hidden_size=80, output_size=4, num_layers=8, dropout=0.15, bidirectional=False):
         super(MusicLSTM, self).__init__()
 

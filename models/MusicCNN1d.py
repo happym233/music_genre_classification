@@ -5,7 +5,6 @@ from .MLP import MLP
 
 
 class MusicCNN1d(nn.Module):
-
     """
         1d CNN for music genre classification
         several fixed CNN blocks(different output channels) followed by a DNN block
@@ -24,13 +23,14 @@ class MusicCNN1d(nn.Module):
         DNN_hidden_dims: list
             hidden dimensions of DNN clock
     """
+
     def __init__(self, CNN_out_channels=None, pooling='avg', DNN_input_dim=26720, DNN_output_dim=10,
                  DNN_hidden_dims=[]):
 
         super(MusicCNN1d, self).__init__()
 
         if CNN_out_channels is None:
-           raise Exception('Empty CNN out channels')
+            raise Exception('Empty CNN out channels')
         cur = 1
         CNN_block_array = []
         for CNN_out_channel in CNN_out_channels:
