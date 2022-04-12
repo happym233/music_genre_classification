@@ -56,6 +56,8 @@ pip install -r requirements.txt
 | **MLP on csv**                       |                                                              |
 | MLP training on csv                  | [MLP_training_csv.ipynb](jupyter/MLP_training_csv.ipynb)     |
 | MLP testing on csv                   | [MLP_testing_csv.ipynb](jupyter/MLP_testing_csv.ipynb)       |
+| **scikit-learn models on csv**       |                                                              |
+| scikit-learn models on csv           | [scikit_learn_models_csv.ipynb](jupyter/scikit_learn_models_csv.ipynb) |
 | **MLP on wave**                      |                                                              |
 | MLP training on wave                 | [MLP_training_wave.ipynb](jupyter/MLP_training_wave.ipynb)   |
 | MLP testing on wave                  | [MLP_testing_wave.ipynb](jupyter/MLP_testing_wave.ipynb)     |
