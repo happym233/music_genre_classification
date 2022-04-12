@@ -3,5 +3,7 @@
 /original_data/images_original/
 /original_data/features_3_sec.csv
 /original_data/features_30_sec.csv
-/processed_data/processed_features/
-/processed_data/processed_waves/
+/processed_data/processed_features/4-genres
+/processed_data/processed_features/10-genres
+/processed_data/processed_waves/4-genres
+/processed_data/processed_waves/10-genres
