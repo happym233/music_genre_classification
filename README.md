@@ -3,6 +3,48 @@ COMP 6321 project: music genre classification on GTZAN
 
 
 
+## Requirements installation
+
+Requirement can be installed following:
+
+```
+pip install -r requirements.txt
+```
+
+
+
+## Running
+
+1. download the dataset from https://www.kaggle.com/andradaolteanu/gtzan-dataset-music-genre-classification
+    unzip the file and paste it into folder **/original_data**
+    
+2. Before running the model,  it is required to **run dataset processor** first
+
+   if trained on csv, run data_splitting_csv.ipynb
+   if trained on waves, run music_wave_preprocessor.ipynb
+
+   check the /processed_data there should be data inside (or run tests/test_data_loading)
+
+3. Open the target model jupyter and modify switch to the root directory
+
+    if run it locally, modify it into:
+
+    ```
+    os.chdir('..')
+    ```
+
+    if run from google colab, modify it into:
+
+    ```
+    from google.colab import drive
+    drive.mount('/content/drive/')
+    os.chdir(your_root_dir) // swtiching to your root directory of this project
+    ```
+
+    
+
+## **Training and testing results**
+
 |                                      | link                                                         |
 | ------------------------------------ | ------------------------------------------------------------ |
 | wave processing example              | [wave_feature_extraction_sample.ipynb](jupyter/wave_feature_extraction_sample.ipynb) |
