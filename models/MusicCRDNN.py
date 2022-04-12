@@ -40,7 +40,7 @@ class MusicCRDNN(nn.Module):
     '''
 
     def __init__(self, CNN_out_channels=[], output_dim=10, LSTM_input_size=80, LSTM_hidden_size=240,
-                 MLP_hidden_dims=[60], res_block=False, bidirectional=False):
+                 LSTM_num_layers=8, MLP_hidden_dims=[60], res_block=False, bidirectional=False):
         super(MusicCRDNN, self).__init__()
 
         CNN_block_array = []
@@ -66,7 +66,7 @@ class MusicCRDNN(nn.Module):
         self.conv = nn.Sequential(*CNN_block_array)
 
         self.LSTM = nn.LSTM(input_size=LSTM_input_size, hidden_size=LSTM_hidden_size,
-                            num_layers=8, dropout=0.15, batch_first=True, bidirectional=bidirectional)
+                            num_layers=LSTM_num_layers, dropout=0.15, batch_first=True, bidirectional=bidirectional)
 
         self.MLP = None
         if not bidirectional:

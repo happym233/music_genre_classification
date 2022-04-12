@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
    check the /processed_data there should be data inside (or run tests/test_data_loading)
 
-3. Open the target model jupyter and modify switch to the root directory
+3. Open the target model jupyter and modify **switch to the root directory** part
 
     if run it locally, modify it into:
 
