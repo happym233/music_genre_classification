@@ -10,6 +10,8 @@ class MusicCNN2d_2CNNBlock(nn.Module):
         2d CNN(2 CNN block) for music genre classification
         2 2d CNN blocks followed by a DNN block
 
+        Arguments
+        ---------
         out_channel1: int
             number of output channels for 1st CNN block
         out_channel2: int
@@ -23,6 +25,17 @@ class MusicCNN2d_2CNNBlock(nn.Module):
             output dimension of DNN block
         DNN_hidden_dims: list
             hidden dimensions of DNN clock
+
+        Example
+        ---------
+        >>>model = MusicCNN2d_2CNNBlock(out_channel1=8,
+        >>>           out_channel2=32,
+        >>>           DNN_input_dim=1152,
+        >>>           DNN_hidden_dims=[],
+        >>>           DNN_output_dim=10)
+        >>>inp_tensor = torch.rand([10, 1, 100, 100])
+        >>>out_tensor = model(inp_tensor)
+        >>>print(out_tensor.shape)
     """
     def __init__(self, out_channel1=8, out_channel2=32, DNN_input_dim=10000, DNN_hidden_dims=[], DNN_output_dim=10):
         super(MusicCNN2d_2CNNBlock, self).__init__()
@@ -71,6 +84,8 @@ class MusicCNN2d(nn.Module):
         2d CNN for music genre classification
         several fixed CNN blocks(different output channels) followed by a DNN block
 
+        Arguments
+        ---------
         CNN_out_channels: list
             an array of output channels
 
@@ -82,6 +97,14 @@ class MusicCNN2d(nn.Module):
             output dimension of DNN block
         DNN_hidden_dims: list
             hidden dimensions of DNN clock
+
+        Example
+        ---------
+        >>>model = MusicCNN2d(out_channels=[2, 4, 8], DNN_input_dim=1152, DNN_hidden_dims=[], DNN_output_dim=10, res_block=False)
+        >>>inp_tensor = torch.rand([10, 1, 100, 100])
+        >>>out_tensor = model(inp_tensor)
+        >>>print(out_tensor.shape)
+        torch.Size([10, 10])
     """
 
     def __init__(self, out_channels=[], DNN_input_dim=10000, DNN_hidden_dims=[], DNN_output_dim=10, res_block=False):

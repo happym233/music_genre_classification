@@ -6,6 +6,9 @@ class CNN_1d_block(nn.Module):
     """
         1-dimensional CNN block
         CONV1d + activation + batch_norm + pooling
+
+        Arguments
+        ---------
         in_channels: int
             number of input channels
         out_channels: int
@@ -31,6 +34,24 @@ class CNN_1d_block(nn.Module):
         batch_norm: boolean
             True if use batch norm
             False if not use batch norm
+
+        Example
+        ---------
+            >>>model = CNN_1d_block(in_channels=1,
+            >>>         out_channels=4,
+            >>>         kernel_size=3,
+            >>>         stride=1,
+            >>>         padding=0,
+            >>>         pooling='avg',
+            >>>         pooling_kernel_size=2,
+            >>>         pooling_stride=1,
+            >>>         pooling_padding=0,
+            >>>         activation='ReLU',
+            >>>         batch_norm=True)
+            >>>inp_tensor = torch.rand([10, 1, 10])
+            >>>out_tensor = model(inp_tensor)
+            >>>print(out_tensor.shape)
+            torch.Size([10, 4, 7])
     """
 
     def __init__(
@@ -82,6 +103,9 @@ class CNN_2d_block(nn.Module):
     """
         2-dimensional CNN block
         CONV2d + activation + batch_norm + pooling
+
+        Arguments
+        ---------
         in_channels: int
             number of input channels
         out_channels: int
@@ -107,6 +131,24 @@ class CNN_2d_block(nn.Module):
         batch_norm: boolean
             True if use batch norm
             False if not use batch norm
+
+        Example
+        ---------
+        >>>model = CNN_2d_block(in_channels=1,
+        >>>             out_channels=4,
+        >>>             kernel_size=3,
+        >>>             stride=1,
+        >>>             padding=0,
+        >>>             pooling='avg',
+        >>>             pooling_kernel_size=2,
+        >>>             pooling_stride=1,
+        >>>             pooling_padding=0,
+        >>>             activation='ReLU',
+        >>>             batch_norm=True)
+        >>>inp_tensor = torch.rand([10, 1, 10, 10])
+        >>>out_tensor = model(inp_tensor)
+        >>>print(out_tensor.shape)
+        torch.Size([10, 4, 7, 7])
     """
 
     def __init__(
@@ -154,12 +196,22 @@ class CNN_2d_block(nn.Module):
 
 
 class Res1d(nn.Module):
-
     """
         residual convolution block
         conv 3 => batch norm => relu => conv 3 => batch norm => out
                                                                  => x => out + x => relu
+
+        Arguments
+        ---------
         channels: number of channels(unchanged through residual convolutional block)
+
+        Example
+        ---------
+        >>>model = Res1d(2)
+        >>>inp_tensor = torch.rand([10, 2, 10])
+        >>>out_tensor = model(inp_tensor)
+        >>>print(out_tensor.shape)
+        torch.Size([10, 2, 10])
     """
 
     def __init__(self, channels):
@@ -191,13 +243,24 @@ class Res1d(nn.Module):
         out = self.Conv1d2(out)
         return nn.ReLU()(out + x)
 
+
 class Res2d(nn.Module):
-    '''
+    """
         residual convolution block
         conv 3x3 => batch norm => relu => conv 3x3 => batch norm => out
                                                                  => x => out + x => relu
+
+        Arguments
+        ---------
         channels: number of channels(unchanged through residual convolutional block)
-    '''
+
+        Example
+        ---------
+        >>>model = Res2d(2)
+        >>>inp_tensor = torch.rand([10, 2, 10, 10])
+        >>>out_tensor = model(inp_tensor)
+        >>>print(out_tensor.shape)
+    """
 
     def __init__(self, channels):
         super(Res2d, self).__init__()

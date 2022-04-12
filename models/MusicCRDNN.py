@@ -7,6 +7,9 @@ from .MLP import MLP
 class MusicCRDNN(nn.Module):
     '''
         CNN + LSTM + MLP
+
+        Arguments
+        ---------
         CNN_out_channels: list
             the number of output channels of CNN blocks
         output_dim: int
@@ -21,6 +24,19 @@ class MusicCRDNN(nn.Module):
             True if use residual block instead of common CNN block
         bidirectional: boolean
             True if use bidirectional LSTM
+
+        Example
+        ---------
+        >>>model = MusicCRDNN(CNN_out_channels=[2, 4, 8, 8],
+        >>>           output_dim=10,
+        >>>           LSTM_input_size=48,
+        >>>           LSTM_hidden_size=80,
+        >>>           MLP_hidden_dims=[160],
+        >>>           res_block=False,
+        >>>           bidirectional=False)
+        >>>inp_tensor = torch.rand([10, 1, 100, 100])
+        >>>out_tensor = model(inp_tensor)
+        >>>print(out_tensor.shape)
     '''
 
     def __init__(self, CNN_out_channels=[], output_dim=10, LSTM_input_size=80, LSTM_hidden_size=240,

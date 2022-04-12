@@ -8,6 +8,8 @@ class MusicLSTM(nn.Module):
     """
         LSTM with linear transformation
 
+        Arguments
+        ---------
         input_size: int
             size of input features
         hidden_size: int
@@ -20,6 +22,14 @@ class MusicLSTM(nn.Module):
             dropout rate
         bidirectional: boolean
             True if use bidirectional LSTM
+
+        Example
+        ---------
+        >>>model = MusicLSTM(input_size=10, hidden_size=20, output_size=10, num_layers=4, dropout=0.15, bidirectional=False)
+        >>>inp_tensor = torch.rand([10, 10, 10])
+        >>>out_tensor = model(inp_tensor)
+        >>>print(out_tensor.shape)
+        torch.Size([10, 10])
     """
 
     def __init__(self, input_size=40, hidden_size=80, output_size=4, num_layers=8, dropout=0.15, bidirectional=False):

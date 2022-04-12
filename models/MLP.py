@@ -6,6 +6,9 @@ class MLP(nn.Module):
 
     """
         MLP
+
+        Arguments
+        ---------
         input_dim: str
             input dimension
         output_dim: str
@@ -16,6 +19,14 @@ class MLP(nn.Module):
             else use ReLU as activation function
         batch_norm: boolean
             true if apply batch norm
+
+        Example
+        ---------
+        >>> model = MLP(10, 10, [50])
+        >>> inp_tensor = torch.rand([10, 10])
+        >>> out_tensor = model(inp_tensor)
+        >>> print(out_tensor.shape)
+
     """
 
     def __init__(self, input_dim, output_dim, hidden_dims=[], activation='relu', batch_norm=False):

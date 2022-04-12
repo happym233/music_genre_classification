@@ -9,6 +9,8 @@ class MusicCNN1d(nn.Module):
         1d CNN for music genre classification
         several fixed CNN blocks(different output channels) followed by a DNN block
 
+        Arguments
+        ---------
         CNN_out_channels: list
             an array of output channels
         pooling: str
@@ -22,6 +24,20 @@ class MusicCNN1d(nn.Module):
             output dimension of DNN block
         DNN_hidden_dims: list
             hidden dimensions of DNN clock
+
+        Example
+        ---------
+        >>>model = MusicCNN1d(CNN_input_channels=1,
+        >>>           CNN_out_channels=[2, 4, 8],
+        >>>           pooling='avg',
+        >>>           DNN_input_dim=8,
+        >>>           DNN_output_dim=10,
+        >>>           DNN_hidden_dims=[50],
+        >>>           res_block=False)
+        >>>inp_tensor = torch.rand([10, 1, 100])
+        >>>out_tensor = model(inp_tensor)
+        >>>print(out_tensor.shape)
+        torch.Size([10, 10])
     """
 
     def __init__(self, CNN_input_channels=1, CNN_out_channels=None, pooling='avg', DNN_input_dim=26720, DNN_output_dim=10,
