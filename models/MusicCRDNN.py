@@ -44,10 +44,10 @@ class MusicCRDNN(nn.Module):
         super(MusicCRDNN, self).__init__()
 
         CNN_block_array = []
-        cur = 1
+        input_channels = 1
         for CNN_out_channel in CNN_out_channels:
             CNN_block_array.append(CNN_2d_block(
-                in_channels=cur,
+                in_channels=input_channels,
                 out_channels=CNN_out_channel,
                 kernel_size=(3, 3),
                 stride=(1, 1),
@@ -61,7 +61,7 @@ class MusicCRDNN(nn.Module):
             ))
             if res_block:
                 CNN_block_array.append(Res2d(channels=CNN_out_channel))
-            cur = CNN_out_channel
+            input_channels = CNN_out_channel
 
         self.conv = nn.Sequential(*CNN_block_array)
 

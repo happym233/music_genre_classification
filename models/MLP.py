@@ -43,10 +43,10 @@ class MLP(nn.Module):
         if hidden_dims is None or len(hidden_dims) == 0:
             linear_array.append(nn.Linear(input_dim, output_dim))
         else:
-            cur = input_dim
-            for hidden_dim in hidden_dims:
-                linear_array.append(nn.Linear(cur, hidden_dim))
-                cur = hidden_dim
+            hidden_input_dim = input_dim
+            for hidden_output_dim in hidden_dims:
+                linear_array.append(nn.Linear(hidden_input_dim, hidden_output_dim))
+                cur = hidden_output_dim
                 linear_array.append(activation_func)
                 if batch_norm:
                     linear_array.append(nn.BatchNorm1d(cur))

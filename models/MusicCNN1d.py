@@ -47,11 +47,11 @@ class MusicCNN1d(nn.Module):
 
         if CNN_out_channels is None:
             raise Exception('Empty CNN out channels')
-        cur = CNN_input_channels
+        input_channels = CNN_input_channels
         CNN_block_array = []
         for CNN_out_channel in CNN_out_channels:
             CNN_block_array.append(CNN_1d_block(
-                in_channels=cur,
+                in_channels=input_channels,
                 out_channels=CNN_out_channel,
                 kernel_size=3,
                 stride=2,
@@ -66,7 +66,7 @@ class MusicCNN1d(nn.Module):
 
             if res_block:
                 CNN_block_array.append(Res1d(CNN_out_channel))
-            cur = CNN_out_channel
+            input_channels = CNN_out_channel
             # print(cur)
 
         self.CNN = nn.Sequential(*CNN_block_array)

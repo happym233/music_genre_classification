@@ -109,11 +109,11 @@ class MusicCNN2d(nn.Module):
 
     def __init__(self, out_channels=[], DNN_input_dim=10000, DNN_hidden_dims=[], DNN_output_dim=10, res_block=False):
         super(MusicCNN2d, self).__init__()
-        cur = 1
+        input_channels = 1
         conv_array = []
         for out_channel in out_channels:
             conv_array.append(CNN_2d_block(
-                in_channels=cur,
+                in_channels=input_channels,
                 out_channels=out_channel,
                 kernel_size=3,
                 stride=1,
@@ -127,7 +127,7 @@ class MusicCNN2d(nn.Module):
             ))
             if res_block:
                 conv_array.append(Res2d(out_channel))
-            cur = out_channel
+            input_channels = out_channel
         self.conv = nn.Sequential(*conv_array)
         self.MLP = MLP(DNN_input_dim, DNN_output_dim, DNN_hidden_dims)
         # self.linear3 = nn.Linear(50, 4)
