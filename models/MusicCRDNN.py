@@ -31,6 +31,7 @@ class MusicCRDNN(nn.Module):
         >>>           output_dim=10,
         >>>           LSTM_input_size=48,
         >>>           LSTM_hidden_size=80,
+        >>>           LSTM_num_layers=8,
         >>>           MLP_hidden_dims=[160],
         >>>           res_block=False,
         >>>           bidirectional=False)
