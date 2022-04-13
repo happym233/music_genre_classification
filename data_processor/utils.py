@@ -64,7 +64,7 @@ def normalize_data(normalize_array):
                     normalized_ele[:, j, :] = scalers[j].fit_transform(normalized_ele[:, j, :])
             else:
                 for j in range(fit_ele.shape[1]):
-                    normalized_ele[:, j, :] = scalers[j].fit_transform(normalized_ele[:, j, :])
+                    normalized_ele[:, j, :] = scalers[j].transform(normalized_ele[:, j, :])
             normalize_array[i] = normalized_ele
     if len(normalize_array) == 1:
         return normalize_array[0]
